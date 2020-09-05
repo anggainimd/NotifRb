@@ -1,6 +1,6 @@
 # Notification Message 
 ## Description 
-Assingment At Seedly, Community platform allows people to post question and answer. Implement the notification in a flexible way such that it can cater to new types of notification, Due to the different types of notification with different message templates.
+ Implement the notification in a flexible way such that it can cater to new types of notification, Due to the different types of notification with different message templates.
 
 The Main Feature for this project are:
 - grouping with current user_id
