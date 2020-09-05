@@ -32,3 +32,7 @@ $ ruby notif.rb notifications.json hackamorevisiting
 rspec spec
 ```
 
+### Contact
+
+anggainmail@gmail.com
+
