@@ -35,9 +35,18 @@ $ ruby notif.rb notifications.json hackamorevisiting
 rspec spec
 ```
 ### Run with 1 command on your terminal 
+you will run these users at the same time:
+- backwarddusty
+- collescivil
+- funeralpierce
+- gratuitystopper
+- hackamorevisiting
+- jellybyunmarked
+- makerchorse
+- windboundeast
 ```
 On your local machine
-sh test.sh
+sh multi-user-test.sh
 ```
 
 ### Coverage
