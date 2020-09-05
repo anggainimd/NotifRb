@@ -16,7 +16,10 @@ The Main Feature for this project are:
 ```
 rbenv install 2.7.1 / rbenv global 2.7.1
 gem install rspec
+gem install simplecov
 ```
+here is how to install rbenv with ruby [2.7.1](https://www.techiediaries.com/install-ruby-2-7-rails-6-ubuntu-20-04/)
+
 
 ## Test
 
@@ -31,6 +34,9 @@ $ ruby notif.rb notifications.json hackamorevisiting
 ```
 rspec spec
 ```
+
+### Coverage
+Open file coverage/index.html
 
 ### Contact
 

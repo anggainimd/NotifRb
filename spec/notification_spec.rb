@@ -42,6 +42,22 @@ RSpec.describe Notification do
     it 'find only current user_id' do
       expect( notif.find_by_user(data_json, test_user_id).map{|n| n['user_id']}.uniq.count ).to eq(1)
     end
+
+    it 'not send notification if sender and user are same' do
+      expect( notif.find_by_user(data_json, test_user_id).map{|n| n["user_id"] == n["sender_id"]}.include?(true) ).to eq(false)
+    end
+  end
+
+  context 'Notifications batched [notif_to_sentence]' do
+    let(:notif_by_type) {notif.find_by_user(data_json, test_user_id).group_by{|currentNotif| currentNotif["notification_type_id"]}}
+
+    it 'Notifications should be batched up to 3 notifications' do
+      expect(
+        notif.notif_to_sentence(notif_by_type.first).first.include?(
+          notif.to_sentence(notif_by_type.first[1].each_slice(3).to_a[0].map{|n| n['sender_id']})
+        )
+      ).to eq(true)
+    end
   end
 
   context 'Group notification by minute [group_by_minutes]' do
@@ -63,6 +79,10 @@ RSpec.describe Notification do
   end
 
   context 'Array to Text [to_sentence]' do
+    it 'empty name return nothing' do
+      expect( notif.to_sentence([]) ).to eq('')
+    end
+
     it 'single name without word connector' do
       expect( notif.to_sentence(single_name).include?(',') ).to eq(false)
       expect( notif.to_sentence(single_name).include?('and') ).to eq(false)
