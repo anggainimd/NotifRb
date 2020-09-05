@@ -1,4 +1,4 @@
-require_relative '../notification.rb'
+require './notification.rb'
 
 file_name = ARGV.shift
 user_id = ARGV.shift

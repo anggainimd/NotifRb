@@ -2,10 +2,10 @@ require '../notification.rb'
 
 RSpec.describe Notification do
   let(:notif) {Notification.new}
-  let(:notifications_text) { notif.get_notifications_for_user('./notificationNew.json', 'hackamorevisiting') } 
+  let(:notifications_text) { notif.get_notifications_for_user('./notifications_for_test.json', 'hackamorevisiting') } 
 
   let(:test_user_id) {'hackamorevisiting'}
-  let(:data_json) { JSON.parse(File.read('./notificationNew.json')) }
+  let(:data_json) { JSON.parse(File.read('./notifications_for_test.json')) }
 
   let(:single_name) { ['Jhon'] }
   let(:double_name) { ['Jhon', 'Gino'] }

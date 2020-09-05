@@ -1,5 +1,4 @@
 require "json"
-require "pry"
 
 class Notification
   # asumtion notif type 4 is devote
@@ -57,7 +56,3 @@ class Notification
     end
   end
 end
-
-# shortcut to get values when you want to run it on terminal
-# comment this line if you run spec test
-pp Notification.new.get_notifications_for_user(ARGV[0], ARGV[1])
