@@ -1,4 +1,5 @@
 require "json"
+require 'pry'
 
 class Notification
   # asumtion notif type 4 is devote
@@ -20,18 +21,20 @@ class Notification
         notificationsText << notif_to_sentence(currentNotif)
       }
     end
-    return notificationsText
+    return notificationsText.flatten
   end
 
   def notif_to_sentence(currentNotif)
-    created_at = Time.at(currentNotif[1][0]["created_at"].to_f / 1000).strftime("%Y-%m-%d %H:%M")  
-    sender_users = to_sentence(currentNotif[1].map{|sender| sender["sender_id"]})
-    notif_text_type = NOTIF_TYPE[currentNotif[1][0]["notification_type_id"]]
-    "[#{created_at}] #{sender_users} #{notif_text_type} a question"
+    currentNotif[1].each_slice(3).to_a.map do |notif|
+      created_at = Time.at(notif[0]["created_at"].to_f / 1000).strftime("%Y-%m-%d %H:%M")  
+      sender_users = to_sentence(notif.map{|sender| sender["sender_id"]})
+      notif_text_type = NOTIF_TYPE[notif[0]["notification_type_id"]]
+      "[#{created_at}] #{sender_users} #{notif_text_type} a question"
+    end
   end
 
   def find_by_user(data_hash, user_id)
-    data_hash.select{|data| data["user_id"] == user_id}
+    data_hash.select{|data| data["user_id"] == user_id && data["sender_id"] != user_id}
   end
 
   def group_by_minutes(data_hash)
