@@ -28,6 +28,10 @@ RSpec.describe Notification do
     it 'notif type 3 is upvote' do
       expect( Notification::NOTIF_TYPE[3] ).to eq('upvote')
     end
+
+    it 'notif type 4 is devote (asumtion)' do
+      expect( Notification::NOTIF_TYPE[4] ).to eq('devote')
+    end
   end
 
   context 'Filter json by user_id [find_by_user]' do
@@ -43,7 +47,18 @@ RSpec.describe Notification do
   context 'Group notification by minute [group_by_minutes]' do
     let(:user_notif) {notif.find_by_user(data_json, test_user_id)}
     it 'time range is 1 minute' do
-      expect( notif.group_by_minutes(user_notif).map{|x| x[0].to_i % 60  }.uniq  ).to eq([0])
+      expect( notif.group_by_minutes(user_notif).map{|x| x[0].to_i % 60 }.uniq  ).to eq([0])
+    end
+  end
+
+  context 'Notification by json file and user_id [notifications_text]' do
+    let(:user_notif) {notif.find_by_user(data_json, test_user_id)}
+    it 'return is string sentence' do
+      expect( notifications_text.map{|x| x.class }.uniq  ).to eq([String])
+    end
+
+    it 'return false if file not exist' do
+      expect( notif.get_notifications_for_user('./notExist.json', 'hackamorevisiting')  ).to eq([false, "File not exist"])
     end
   end
 

@@ -7,7 +7,11 @@ class Notification
 
   def get_notifications_for_user(notifications, user_id)
     notificationsText = []
-    file = File.read(notifications)
+    file = if File.exist?(notifications)
+      File.read(notifications)
+    else
+      return false, "File not exist"
+    end
     data_hash = JSON.parse(file)
 
     userNotification = find_by_user(data_hash, user_id)
@@ -53,3 +57,7 @@ class Notification
     end
   end
 end
+
+# shortcut to get values when you want to run it on terminal
+# comment this line if you run spec test
+pp Notification.new.get_notifications_for_user(ARGV[0], ARGV[1])
