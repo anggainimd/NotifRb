@@ -14,7 +14,8 @@ The Main Feature for this project are:
 
 ## Installation
 ```
-rbenv install 2.7.1 / rbenv global 2.7.1
+rbenv install 2.7.1
+rbenv global 2.7.1
 bundle install
 ```
 here is how to install rbenv with ruby [2.7.1](https://www.techiediaries.com/install-ruby-2-7-rails-6-ubuntu-20-04/)
