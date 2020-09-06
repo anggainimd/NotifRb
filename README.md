@@ -7,6 +7,7 @@ The Main Feature for this project are:
 - grouping data per 1 minute
 - grouping data with notification type
 - array to sentence
+- notif batch max 3
 
 ## Requirements
 - ruby 2.7
